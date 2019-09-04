@@ -1,14 +1,11 @@
 @extends('layout/admin')
-
-@section('titulo')
-Modificar Usuarios - SENA
-@endsection
-
-@section('titulo_pagina')
-Modificar Usuarios
-@endsection
-
-@section('cuerpo')
+    @section('titulo')
+        Modificar Usuarios - SENA
+    @endsection
+    @section('titulo_pagina')
+        Modificar Usuarios
+    @endsection
+    @section('cuerpo')
 
 <div class="col-lg-12">
     <div class="card">
