@@ -1,15 +1,11 @@
 @extends('layout/admin')
-
-@section('titulo')
-Crear Usuarios - SENA
-@endsection
-
-@section('titulo_pagina')
-Crear Usuarios
-@endsection
-
+    @section('titulo')
+        Crear Usuarios - SENA
+    @endsection
+    @section('titulo_pagina')
+        Crear Usuarios
+    @endsection
 @section('cuerpo')
-
 <div class="col-lg-12">
     <div class="card">
       @if($errors->any())
