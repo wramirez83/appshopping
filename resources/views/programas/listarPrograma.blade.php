@@ -60,6 +60,8 @@ Listar Programa de Formación
             @endforeach
         </tbody>
     </table>
+    <div class="text-center">{{ $programas->links()}}</div>
+    
 </div>
 <script type="text/javascript">
 function verModal(a)

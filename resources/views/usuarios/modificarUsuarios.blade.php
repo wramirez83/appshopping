@@ -20,7 +20,6 @@
         </div>
         <div class="card-body card-block">
               {{ CSRF_FIELD() }}
-
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Nombre</label>
@@ -35,11 +34,10 @@
                         <label for="email-input" class=" form-control-label">Correo Electronico</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="email" id="email-input" name="correo" placeholder=" Email" class="form-control">
+                        <input type="text" id="email-input" name="correo" placeholder=" Email" class="form-control">
                         <small class="help-block form-text">Correo a Buscar</small>
                     </div>
                 </div>
-
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="email-input" class=" form-control-label">Documento</label>
@@ -49,8 +47,6 @@
                         <small class="help-block form-text">Ingrese su correo</small>
                     </div>
                 </div>
-
-
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-sm">
@@ -62,10 +58,8 @@
         </div>
     </div>
   </form>
-
 </div>
 @if(session('datos'))
-
 <!-- listado de usuarios -->
 <h3 class="title-5 m-b-35">Usuarios Existentes</h3>
 
@@ -87,11 +81,8 @@
             </tr>
         </thead>
         <tbody>
-
             <tr class="spacer"></tr>
-
             <tr class="spacer"></tr>
-
             <tr class="spacer"></tr>
             @foreach(session('datos') as $llaveRegistros)
             <tr class="tr-shadow">
@@ -114,13 +105,13 @@
 
                 <td>
                     <div class="table-data-feature">
-                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                            <i class="zmdi zmdi-mail-send"></i>
-                        </button>
+                       <form method="post" action="{{ Route('actualizarUsuario') }}">
+                        {{ CSRF_FIELD() }}
+                        <input type="hidden" name="idUsuario" value="{{ $llaveRegistros->id_usuario }}">
                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="zmdi zmdi-edit"></i>
                         </button>
-                        
+                        </form>
                     </div>
                 </td>
             </tr>

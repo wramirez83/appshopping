@@ -16,6 +16,13 @@ codigo UNSPSC
           <strong>Código Creado</strong>
         </div>
       @endif
+      @if($errors->any())
+        <div class="alert alert-danger">
+          @foreach($errors->all() as $llaveError)
+            {{ $llaveError }} <br/>
+          @endforeach
+        </div>
+      @endif
         <form action="{{ Route('guardarCodigo') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
         <div class="card-header">
             <strong>Datos Básicos</strong>
@@ -55,4 +62,16 @@ codigo UNSPSC
   </form>
 
 </div>
+@endsection
+@section('jsfoot')
+   
+<script>
+    $('#btnUNSPSC').addClass('active');
+    $('#btnGestionApp').addClass('active');
+
+    $.validate({
+        lang: 'es'
+    });
+</script>
+
 @endsection

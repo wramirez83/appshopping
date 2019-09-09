@@ -58,7 +58,9 @@ Route::middleware(['auth', 'rolAdmonMiddleware'])->group(function(){
   Route::get('/crearUsuario', 'admon\usuarioControlador@crearUsuario')->name('crearUsuario');
   Route::post('/guardarUsuario', 'admon\usuarioControlador@guardarUsuario')->name('guardarUsuario');
   Route::get('/modificarUsuario', 'admon\usuarioControlador@modificarUsuario')->name('modificarUsuario');
+  Route::post('/actualizarUsuario', 'admon\usuarioControlador@actualizarUsuario')->name('actualizarUsuario');
   Route::post('/buscarUsuario', 'admon\usuarioControlador@buscarUsuario')->name('buscarUsuario');
+  Route::post('/actualizandoUsuario', 'admon\usuarioControlador@actualizando')->name('actualizandoUsuario');
   Route::get('/areas', 'admon\areasControlador@index')->name('areas');
   Route::post('/guardarArea', 'admon\areasControlador@guardarArea')->name('guardarArea');
   Route::post('/desargarReporteAprobado', 'admon\reportes@reporteAprobados')->name('desargarReporteAprobado');//Reporte
@@ -119,7 +121,11 @@ Route::middleware(['auth', 'rolAlmancenMiddleware'])->group(function(){
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS *******
 
-Route::get('/limpiarCache', function(){
+Route::get('/limpiarConfiguracion', function(){
   Artisan::call('config:clear');
+  return 'Limpieza de Cache';
+});
+Route::get('/limpiarCache', function(){
+  Artisan::call('cache:clear');
   return 'Limpieza de Cache';
 });

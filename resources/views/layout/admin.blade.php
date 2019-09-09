@@ -10,10 +10,9 @@
     <meta name="keywords" content="au theme template">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Title Page-->
     <title>@yield('titulo')</title>
 
-    <!-- Fontfaces CSS-->
+    <!--  CSS-->
     <link href="{{ url('/') }}/css/font-face.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/css/personal.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -36,6 +35,10 @@
 
     <!-- Main CSS-->
     <link href="{{ url('/') }}/css/theme.css" rel="stylesheet" media="all">
+
+    <!-- JS -->
+    
+
 
 </head>
 
@@ -200,10 +203,10 @@
                                 <li id="btnFicha">
                                     <a href="{{ Route('ficha') }}">Fichas</a>
                                 </li>
-                                <li>
+                                <li id="btnUNSPSC">
                                     <a href="{{ Route('codigoUNSPSC') }}">Códigos UNSPSC</a>
                                 </li>
-                                <li>
+                                <li id="btnBuscarCodigoUNSPSC">
                                     <a href="{{ Route('buscarCodigoUNSPSC') }}">Buscar Códigos UNSPSC</a>
                                 </li>
                                 <li>
@@ -252,10 +255,16 @@
                                     <a href="{{ Route('aprobarCodigoUNSPSC') }}">Aprobar Códigos UNSPSC</a>
                                 </li>
                                 
-                            <li>
+                            <li id="btnNuevoProducto">
                                  <a href="{{ Route('crearProducto') }}">
                                     <i class="fas fa-plus-circle"></i>
-                                    Crear Productos</a>
+                                    Crear Ficha Técnica</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-edit"></i>
+                                    Modificar Ficha Técnica
+                                </a>
                             </li>
                         @endif
                         @if(in_array(2, $role))

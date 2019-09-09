@@ -12,7 +12,7 @@ class areasControlador extends Controller
     public function index()
     {
       $_areas = new areas();
-      $_datos['areas'] = $_areas->all();
+      $_datos['areas'] = $_areas->paginate();
       return view('areas.areas', $_datos);
     }
     public function guardarArea(Request $request)
@@ -23,6 +23,11 @@ class areasControlador extends Controller
       if($_validacion->fails())
       {
         return back()->withInput()->withErrors($_validacion);
+      }
+      $_validar = areas::where('nombre_area', $request->nombre_area)->first();
+      if(isset($_validar->nombre_area))
+      {
+        return back()->withInput()->withErrors('Ya Existe');
       }
       $_areas = new areas();
       $_areas->nombre_area = $request->nombre_area;

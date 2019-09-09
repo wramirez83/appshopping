@@ -5078,6 +5078,54 @@
         "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles"
     },
     {
+        "name": "tinymce/tinymce",
+        "version": "5.0.15",
+        "version_normalized": "5.0.15.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tinymce/tinymce-dist.git",
+            "reference": "1b86aa4e290ca697a3d645e4e9824a84fdfee388"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/1b86aa4e290ca697a3d645e4e9824a84fdfee388",
+            "reference": "1b86aa4e290ca697a3d645e4e9824a84fdfee388",
+            "shasum": ""
+        },
+        "time": "2019-09-02T01:36:11+00:00",
+        "type": "component",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "tinymce.js",
+                    "plugins/*/plugin.js",
+                    "themes/*/theme.js"
+                ],
+                "files": [
+                    "tinymce.min.js",
+                    "plugins/*/plugin.min.js",
+                    "themes/*/theme.min.js",
+                    "skins/**"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1-only"
+        ],
+        "description": "Web based JavaScript HTML WYSIWYG editor control.",
+        "homepage": "http://www.tinymce.com",
+        "keywords": [
+            "editor",
+            "html",
+            "javascript",
+            "richtext",
+            "tinymce",
+            "wysiwyg"
+        ]
+    },
+    {
         "name": "vlucas/phpdotenv",
         "version": "v2.5.1",
         "version_normalized": "2.5.1.0",

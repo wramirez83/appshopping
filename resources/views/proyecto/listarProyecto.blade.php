@@ -57,6 +57,9 @@ Listar Proyecto Formativo - SENA
             @endforeach
         </tbody>
     </table>
+    <div class="text-center">
+        {{ $proyectos->links() }}
+    </div>
 </div>
 @endsection
 @section('jsfoot')

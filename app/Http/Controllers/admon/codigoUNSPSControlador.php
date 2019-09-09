@@ -23,6 +23,11 @@ class codigoUNSPSControlador extends Controller
       {
         return back()->withInput()->withErrors($validar);
       }
+      $_v = codigoUNSPSC::where('id_codigo_unspcs', $resquest->id_codigo_unspcs)->first();
+      if(isset($_v->id_codigo_unspcs))
+      {
+        return back()->withInput()->withErrors('Ya Existe Código UNSPSC');
+      }
       $_codigo = new codigoUNSPSC();
       $_codigo->id_codigo_unspcs = $resquest->id_codigo_unspcs;
       $_codigo->descripcion = $resquest->descripcion;
