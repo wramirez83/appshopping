@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ficha;
+use App\vistaFichasModelo;
 use App\areas;
 use App\solicitud;
 use App\productos_solicitudes;
@@ -23,7 +24,7 @@ class solicitudControlador extends Controller
 {
     public function index()
     {
-      $_ficha = new ficha();
+      $_ficha = new vistaFichasModelo();
       $_area = new areas();
       
       $area_formacion = DB::select('SELECT * FROM usuario_areas, areas_formacion WHERE usuario_areas.id_usuario = ' . Auth::user()->id_usuario . ' AND areas_formacion.id_area = usuario_areas.id_area');

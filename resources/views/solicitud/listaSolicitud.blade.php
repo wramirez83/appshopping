@@ -19,7 +19,6 @@ Solicitud Guardada para Modificar - SENA
     <div class="card">
       <div class="card-header">
         <strong class="card-title mb-3">Identificador Nº:</strong> {{ $solicitud->id_solicitud }}
-      
       </div>
       <div class="card-body">
         <div class="mx-auto d-block">
@@ -92,7 +91,6 @@ Solicitud Guardada para Modificar - SENA
               </table>
             </div>
           </div>
-
           <div class="card-footer">
             <button type="button" class="btn btn-primary btn-sm" id="guardar">
               <i class="fa fa-dot-circle-o"></i>
@@ -115,7 +113,7 @@ Solicitud Guardada para Modificar - SENA
   <script type="text/javascript">
   $(document).ready(function()
   {
-    totalPedido.innerHTML = '<?php echo $t?>'
+    totalPedido.innerHTML = "<?php echo $t?>"
     $("#id_area").select2();
     $("#botonBuscarProducto").click(function(){
       var idCodigo = "";

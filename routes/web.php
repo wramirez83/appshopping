@@ -88,6 +88,7 @@ Route::middleware(['auth', 'rolGestorAreaMiddleware'])->group(function(){
   Route::get('/crearProducto', 'admon\productoControlador@index')->name('crearProducto');
   Route::post('/guardarProducto', 'admon\productoControlador@guardarProducto')->name('guardarProducto');
   Route::get('/modificarProducto/{id?}', 'admon\productoControlador@modificar')->name('modificarProducto');
+  Route::post('/actualizandoProducto', 'admon\productoControlador@actualizando')->name('actualizandoProducto');
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS COMO GESTORES DE AREA  *******
 

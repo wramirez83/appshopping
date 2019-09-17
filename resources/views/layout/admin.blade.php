@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -9,9 +8,7 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('titulo')</title>
-
     <!--  CSS-->
     <link href="{{ url('/') }}/css/font-face.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/css/personal.css" rel="stylesheet" media="all">
@@ -19,11 +16,8 @@
     <link href="{{ url('/') }}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/css/select2.css" rel="stylesheet"/>
-
-
     <!-- Bootstrap CSS-->
     <link href="{{ url('/') }}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
     <!-- Vendor CSS-->
     <link href="{{ url('/') }}/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -32,16 +26,10 @@
     <link href="{{ url('/') }}/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="{{ url('/') }}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="{{ url('/') }}/css/theme.css" rel="stylesheet" media="all">
-
     <!-- JS -->
-    
-
-
 </head>
-
 <body class="animsition">
 <?php $role = array_column(json_decode($_COOKIE['roles']), 'id')?>
 <?php $nombreRoles = array_column(json_decode($_COOKIE['roles']), 'nombre')?>
@@ -163,7 +151,6 @@
             </nav>
         </header>
         <!-- END HEADER MOBILE-->
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -213,10 +200,10 @@
                                     <a href="{{ Route('aprobarCodigoUNSPSC') }}">Aprobar Códigos UNSPSC</a>
                                 </li>
                                 <li id="btnProducto">
-                                    <a href="{{ Route('crearProducto') }}">Crear Productos</a>
+                                    <a href="{{ Route('crearProducto') }}">Crear Ficha Técnica</a>
                                 </li>
                                 <li>
-                                    <a href="{{ Route('buscarProducto') }}">Buscar Productos</a>
+                                    <a href="{{ Route('buscarProducto') }}">Buscar Ficha Técnica</a>
                                 </li>
                             </ul>
                         </li>
@@ -259,12 +246,6 @@
                                  <a href="{{ Route('crearProducto') }}">
                                     <i class="fas fa-plus-circle"></i>
                                     Crear Ficha Técnica</a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-edit"></i>
-                                    Modificar Ficha Técnica
-                                </a>
                             </li>
                         @endif
                         @if(in_array(2, $role))
@@ -316,7 +297,7 @@
                         </li>
                         <li>
                             <a href="{{ Route('buscarProducto') }}">
-                              <i class="fa fa-list-alt"></i>Buscar Productos</a>
+                              <i class="fa fa-list-alt"></i>Buscar Ficha Técnica</a>
                         </li>
                         @if(in_array(1, $role) || in_array(6, $role))
                         <li class="active has-sub">
@@ -342,8 +323,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <div class="header-button">
-                              <p style="padding: 0px 30px 0px"> Aplicación de Compras </p>
-                                
+                              <p style="padding: 0px 30px 0px"> Aplicación de Compras </p>  
                                 <div class="account-wrap chart-info__right">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -386,7 +366,6 @@
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
-
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--w1830">
@@ -394,7 +373,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
-                                    <h2 class="title-1">@yield('titulo_pagina')</h2>
+                                    <h4 class="font-bold">@yield('titulo_pagina')</h4>
                                 </div>
                             </div>
                         </div>
@@ -414,9 +393,7 @@
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
         </div>
-
     </div>
-
     <!-- Jquery JS-->
     <script src="{{ url('/') }}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -438,12 +415,9 @@
     <script src="{{ url('/') }}/vendor/select2/select2.min.js">
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-
     <!-- Main JS-->
     <script src="{{ url('/') }}/js/main.js"></script>
     @yield('jsfoot')
-
 </body>
-
 </html>
 <!-- end document-->

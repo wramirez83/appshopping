@@ -1,11 +1,11 @@
 @extends('layout/admin')
 
 @section('titulo')
-Crear Producto - SENA
+Crear Ficha Técnica - SENA
 @endsection
 
 @section('titulo_pagina')
-Crear Producto - SENA
+Crear Ficha Técnica - SENA
 @endsection
 
 @section('cuerpo')
@@ -21,7 +21,7 @@ Crear Producto - SENA
       @endif
       @if(session('status'))
         <div class="alert alert-success">
-          <strong>Producto Creado</strong>
+          <strong>Ficha Técnica Creada</strong>
         </div>
       @endif
         <form action="{{ Route('guardarProducto') }}" method="post" enctype="multipart/form-data" class="form-horizontal">

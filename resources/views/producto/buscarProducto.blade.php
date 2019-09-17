@@ -170,6 +170,11 @@ Buscar Producto - SENA
          nombre: nombreB, detalles_producto:detalles_productoB, precio_unitario:precio_unitarioB,
           unidad_medida: unidad_medidaB},function( datosI )
          {
+         
+          if(datosI === '[]')
+          {
+            alert("No Coincidencias" + datosI)
+          }
           data = JSON.parse(datosI);
           var table = document.getElementById("Productos");
           var fila = table.rows.length;
@@ -195,8 +200,18 @@ Buscar Producto - SENA
               cell4.innerHTML = data[i2].precio_unitario;
               cell5.innerHTML = data[i2].unidad_medida;
               cell6.setAttribute("id", parseInt(data[i2].id_codigo_producto));
+              var acc;
               dataImg = (data[i2].foto);
-              var acc = "<img src='data:image/jpeg;base64," + dataImg + "' width='50px' onclick='javascript:this.height=200;this.width=200' ondblclick='javascript:this.width=50;this.height=50' data-toggle='tooltip' data-placement='top' title='Ver Foto'>"
+              
+              if(dataImg != null)
+              {
+                acc = "<img src='data:image/jpeg;base64," + dataImg + "' width='50px' onclick='javascript:this.height=200;this.width=200' ondblclick='javascript:this.width=50;this.height=50' data-toggle='tooltip' data-placement='top' title='Ver Foto'>"
+              }
+              else
+              {
+                acc = "<span>Sin Foto</span>";
+              }
+              
               
               if( '{{ $edicion }}' == 'Si' )
               {
