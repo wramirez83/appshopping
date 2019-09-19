@@ -22,6 +22,7 @@ Listar Solicitud - SENA
             <th>Fecha</th>
             <th>Ficha</th>
             <th class="text-right">Estado</th>
+            <th>Ultima Observacion</th>
             <th class="text-right">Acción</th>
           </tr>
         </thead>
@@ -32,6 +33,7 @@ Listar Solicitud - SENA
             <td>{{ $llaveSolicitudes->fecha }}</td>
             <td>{{ $llaveSolicitudes->ficha }}</td>
             <td class="text-right">{{ $llaveSolicitudes->nombre_estado }}</td>
+            <td></td>
             <td class="text-right">
 
               @if($llaveSolicitudes->id_estado == 1)

@@ -29,6 +29,7 @@
     <!-- Main CSS-->
     <link href="{{ url('/') }}/css/theme.css" rel="stylesheet" media="all">
     <!-- JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="animsition">
 <?php $role = array_column(json_decode($_COOKIE['roles']), 'id')?>

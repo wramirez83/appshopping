@@ -108,7 +108,7 @@ Route::middleware(['auth', 'rolInstructorMiddleware'])->group(function(){
 Route::middleware(['auth', 'rolCoordinadorMiddleware'])->group(function(){
   Route::get('/aprobarSolicitud/', 'admon\solicitudControlador@aprobarSolicitud')->name('aprobarSolicitud');
   Route::get('/solicitarAprobarSolicitud/{id?}', 'admon\solicitudControlador@solicitarAprobarSolicitud')->name('solicitarAprobarSolicitud');
-  Route::get('/solicitarNoAprobarSolicitud/{id?}', 'admon\solicitudControlador@solicitarNoAprobarSolicitud')->name('solicitarNoAprobarSolicitud');
+  Route::get('/solicitarNoAprobarSolicitud/{id?}/{motivo?}', 'admon\solicitudControlador@solicitarNoAprobarSolicitud')->name('solicitarNoAprobarSolicitud');
   Route::get('/HistorialSolicitud/', 'admon\solicitudControlador@HistorialSolicitud')->name('HistorialSolicitud');
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS *******

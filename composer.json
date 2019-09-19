@@ -13,6 +13,8 @@
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "tinymce/tinymce": "^5.0",
+        "uxweb/sweet-alert": "^2.0",
+        "villca/numeros-en-letras": "^1.2",
         "vsmoraes/laravel-pdf": "^2.0"
     },
     "require-dev": {

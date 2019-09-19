@@ -115,11 +115,13 @@ Solicitud Guardada para Modificar - SENA
     }
     function solicitarNoAprobacion(id)
     {
-      //Para enviar solicitud según nivel
-      if(confirm('Desea No Aprobar La Solicitud Número: ' + id))
-      {
-        location.href ="{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id;
-      }
+     swal("Indique el motivo de la No Aprobación:", {
+        content: "input",
+      })
+      .then((value) => {
+        //swal("{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value);
+        location.href ="{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value;
+      });
     }
   </script>
   @endif

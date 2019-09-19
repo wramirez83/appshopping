@@ -19,7 +19,7 @@
 <p>&nbsp;</p>
 <p>Hola! Una de las solicitudes no ha sido aprobada:</p>
 <hr />
-
+<p><b>Motivo:</b>{{ $motivo}}</p>
 <p>
   Recuerda que puede consultar el estado de su solicitud en el sistema.
 </p>
