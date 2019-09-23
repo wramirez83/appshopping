@@ -120,10 +120,12 @@ Aprobar por Almacen - SENA
     }
     function solicitarNoAprobacion(id)
     {
-      swal("Indique el motivo de la No Aprobación:", {
-        content: "input",
-      })
-      .then((value) => {
+      if(confirm("Desea Cancelar la Solicitud"))
+      {
+        swal("Indique el motivo de la No Aprobación:", {
+          content: "input",
+        })
+        .then((value) => {
         //swal("{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value);
         location.href ="{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value;
       });
@@ -133,6 +135,7 @@ Aprobar por Almacen - SENA
         location.href ="{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id;
       }*/
     }
+  }
   </script>
   @endif
   <script type="text/javascript">

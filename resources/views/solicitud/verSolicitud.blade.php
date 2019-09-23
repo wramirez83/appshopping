@@ -115,6 +115,8 @@ Solicitud Guardada para Modificar - SENA
     }
     function solicitarNoAprobacion(id)
     {
+      if(confirm("Desea Cancelar la Solicitud"))
+      {
      swal("Indique el motivo de la No Aprobación:", {
         content: "input",
       })
@@ -122,6 +124,7 @@ Solicitud Guardada para Modificar - SENA
         //swal("{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value);
         location.href ="{{Route('solicitarNoAprobarSolicitud')}}" + "/" + id + "/" + value;
       });
+    }
     }
   </script>
   @endif

@@ -35,7 +35,12 @@ class pedidoArea implements FromCollection, WithTitle, WithHeadings
     }
     public function collection()
     {
-        return solicitudesAprobadas::where('nombre_area', $this->_area)->get();
+        return solicitudesAprobadas::where('nombre_area', $this->_area)->get()->map(function($listax, $k)
+            {
+                $listax['detalles_producto'] = htmlentities(strip_tags($listax['detalles_producto']), ENT_QUOTES, 'UTF-8'); 
+                return $listax;
+            });
+        
     }
     public function title(): string
     {
