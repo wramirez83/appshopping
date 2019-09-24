@@ -7,8 +7,7 @@
 </head>
 <body>
 <header>
-<div style="float: left;"><img src="http://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png
-" width="115px" /></div>
+<div style="float: left;"><img src="{{ url('/')}}/images/logoSenaN.png" width="80px" /></div>
 <div style="float: left;">
 <h1 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SIC</h1>
 </div>
@@ -21,5 +20,6 @@
 <hr />
 <p><strong><h1>CÓDIGO</h1></strong></p>
 <p><h2>{{ $codigo }}</h2></p>
+<h3>{{ url('/')}}</h3>
 </body>
 </html>

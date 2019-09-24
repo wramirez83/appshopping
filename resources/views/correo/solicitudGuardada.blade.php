@@ -7,8 +7,7 @@
 </head>
 <body>
 <header>
-<div style="float: left;"><img src="http://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png
-" width="80px" /></div>
+<div style="float: left;"><img src="{{ url('/')}}/images/logoSenaN.png" width="80px" /></div>
 <div style="float: left;">
 <h1 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SIC</h1>
 </div>
@@ -28,5 +27,6 @@
 <p>
   Recuerda que puede consultar el estado de su solicitud en el sistema.
 </p>
+<h3>{{ url('/')}}</h3>
 </body>
 </html>
