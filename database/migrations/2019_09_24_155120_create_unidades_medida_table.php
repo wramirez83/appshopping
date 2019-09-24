@@ -14,8 +14,8 @@ class CreateUnidadesMedidaTable extends Migration {
 	{
 		Schema::create('unidades_medida', function(Blueprint $table)
 		{
-			$table->string('unidad_medida', 5)->primary();
-			$table->string('descripcion', 45);
+			$table->string('unidad_medida', 10)->primary();
+			$table->string('descripcion', 90);
 		});
 	}
 

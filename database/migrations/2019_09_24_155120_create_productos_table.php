@@ -16,6 +16,7 @@ class CreateProductosTable extends Migration {
 		{
 			$table->integer('id_codigo_producto', true);
 			$table->integer('id_area')->nullable()->index('fk_productos_areas1');
+			$table->integer('idUsuario')->index('fk_productos_usuarios1');
 			$table->string('nombre', 45)->nullable();
 			$table->string('detalles_producto', 200)->nullable();
 			$table->integer('precio_unitario')->nullable();

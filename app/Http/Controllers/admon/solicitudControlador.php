@@ -196,7 +196,13 @@ class solicitudControlador extends Controller
      
       $idUsuario = Auth::user()->id_usuario;
       $d = DB::select('SELECT solicitudes.id_solicitud, estados.nombre_estado, estados.id_estado, fichas.ficha, fichas.id_ficha, fichas.id_proyecto_formativo,solicitudes.fecha FROM solicitudes, estados, fichas WHERE estados.id_estado = solicitudes.id_estado AND fichas.id_ficha = solicitudes.id_ficha');
-      return view('solicitud.listarSolicitud', ['solicitudes' => $d, 'historial' => 'Si']);
+      $_obs = [];
+      foreach (array_column($d, 'id_solicitud') as $key => $value) {
+        $_temp = historialEstadosModelo::where('idSolicitud', $value)->orderBy('idHistorialEstados', 'DESC')->pluck('observacion');
+        $_obs[$value] = $_temp->toJson();
+      }
+      
+      return view('solicitud.listarSolicitud', ['solicitudes' => $d, 'historial' => 'Si', '_obs' => $_obs]);
     }
     public function solicitarAprobarSolicitud($id)
     {

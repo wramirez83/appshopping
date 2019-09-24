@@ -17,6 +17,7 @@ class AddForeignKeysToProductosTable extends Migration {
 			$table->foreign('id_area', 'fk_productos_areas1')->references('id_area')->on('areas')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('codigos_unspcs_id_codigo_unspcs', 'fk_productos_codigos_unspcs1')->references('id_codigo_unspcs')->on('codigos_unspcs')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('unidad_medida', 'fk_productos_unidades_medida1')->references('unidad_medida')->on('unidades_medida')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('idUsuario', 'fk_productos_usuarios1')->references('id_usuario')->on('usuarios')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
@@ -33,6 +34,7 @@ class AddForeignKeysToProductosTable extends Migration {
 			$table->dropForeign('fk_productos_areas1');
 			$table->dropForeign('fk_productos_codigos_unspcs1');
 			$table->dropForeign('fk_productos_unidades_medida1');
+			$table->dropForeign('fk_productos_usuarios1');
 		});
 	}
 

@@ -122,11 +122,33 @@ Route::middleware(['auth', 'rolAlmancenMiddleware'])->group(function(){
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS *******
 
-Route::get('/limpiarConfiguracion', function(){
-  Artisan::call('config:clear');
-  return 'Limpieza de Cache';
+Route::get('/limpiarConfiguracion/{clave}', function($clave){
+
+  if($clave == 'wramirez')
+  {
+    Artisan::call('config:clear');
+    return 'Limpieza de Cache';
+  }
+  else
+  {
+    return 'No se realizo la acción';
+  }
+  
 });
 Route::get('/limpiarCache', function(){
   Artisan::call('cache:clear');
   return 'Limpieza de Cache';
+});
+Route::get('/seed/{clave}', function($clave){
+
+  if($clave == 'wramirez')
+  {
+    Artisan::call('db:seed');
+    return 'Seed Ejecutadp';
+  }
+  else
+  {
+    return 'No se realizo la acción';
+  }
+  
 });

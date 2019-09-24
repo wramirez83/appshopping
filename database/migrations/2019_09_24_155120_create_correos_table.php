@@ -15,7 +15,7 @@ class CreateCorreosTable extends Migration {
 		Schema::create('correos', function(Blueprint $table)
 		{
 			$table->integer('id_correo', true);
-			$table->integer('id_usuario')->index('fk_correos_usuarios1')->comment('quien enviÃ³');
+			$table->integer('id_usuario')->index('fk_correos_usuarios1')->comment('quien envió');
 			$table->string('destinatarios', 45)->nullable()->comment('id de los programas /varios');
 			$table->string('asunto', 100);
 			$table->text('cuerpo', 16777215);

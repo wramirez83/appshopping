@@ -16,11 +16,13 @@ class CreateProgramasTable extends Migration {
 		{
 			$table->integer('id_programa', true);
 			$table->string('nombre_programa', 100)->nullable();
-			$table->integer('codigo')->nullable();
+			$table->float('codigo', 10, 0)->nullable();
 			$table->integer('version')->nullable();
 			$table->string('estado', 8)->nullable()->default('Activo')->comment('Activo
 Inactivo');
 			$table->timestamps();
+			$table->string('nivel', 45)->nullable();
+			$table->string('red', 500)->nullable();
 		});
 	}
 

@@ -15,8 +15,8 @@ class CreateFichasTable extends Migration {
 		Schema::create('fichas', function(Blueprint $table)
 		{
 			$table->integer('id_ficha', true);
-			$table->integer('id_proyecto_formativo')->index('fk_fichas_proyecto_formativo1');
-			$table->integer('ficha')->unique('ficha_UNIQUE');
+			$table->integer('id_proyecto_formativo');
+			$table->integer('ficha');
 			$table->string('estado', 8)->nullable()->default('Activo')->comment('Activo
 Inactivo');
 			$table->timestamps();
