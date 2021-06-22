@@ -22,6 +22,7 @@ Listar Solicitud - SENA
             <th>Fecha</th>
             <th>Ficha</th>
             <th class="text-right">Estado</th>
+            <th>Ultima Observacion</th>
             <th class="text-right">Acción</th>
           </tr>
         </thead>
@@ -32,6 +33,7 @@ Listar Solicitud - SENA
             <td>{{ $llaveSolicitudes->fecha }}</td>
             <td>{{ $llaveSolicitudes->ficha }}</td>
             <td class="text-right">{{ $llaveSolicitudes->nombre_estado }}</td>
+            <td>{{ $_obs[$llaveSolicitudes->id_solicitud]}}</td>
             <td class="text-right">
 
               @if($llaveSolicitudes->id_estado == 1)
@@ -41,8 +43,9 @@ Listar Solicitud - SENA
               <i class="fa fa-eye" onclick="ira({{ $llaveSolicitudes->id_solicitud }})"></i>
               @endif
               @if((in_array(1, $role) || in_array(3, $role) || in_array(4, $role) || in_array(5, $role) || in_array(6, $role)) && ($llaveSolicitudes->id_estado > 1 && $llaveSolicitudes->id_estado <= 6))
-              <hr>
-              @if(!isset($historial))
+              
+
+              @if(!isset($historial) && 0 == 1)
               <div class="card border border-primary">
                 <a href="#" onclick="solicitarAprobacion('{{ $llaveSolicitudes->id_solicitud }}')" class="text-center">
                   <i class="fa fa-check"></i><h6>Aprobar</h6>

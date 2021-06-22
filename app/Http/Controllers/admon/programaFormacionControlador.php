@@ -35,7 +35,7 @@ class programaFormacionControlador extends Controller
     public function listarPrograma()
     {
       $_programa = new programas();
-      return view('programas.listarPrograma', ['programas' => $_programa->all()]);
+      return view('programas.listarPrograma', ['programas' => $_programa->paginate()]);
     }
     public function modificarPrograma(Request $request)
     {

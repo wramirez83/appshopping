@@ -1,11 +1,11 @@
 @extends('layout/admin')
 
 @section('titulo')
-Crear Producto - SENA
+Crear Ficha Técnica - SENA
 @endsection
 
 @section('titulo_pagina')
-Crear Producto - SENA
+Crear Ficha Técnica - SENA
 @endsection
 
 @section('cuerpo')
@@ -21,7 +21,7 @@ Crear Producto - SENA
       @endif
       @if(session('status'))
         <div class="alert alert-success">
-          <strong>Producto Creado</strong>
+          <strong>Ficha Técnica Creada</strong>
         </div>
       @endif
         <form action="{{ Route('guardarProducto') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -44,11 +44,10 @@ Crear Producto - SENA
                         <label for="email-input" class=" form-control-label">Detalles de Producto</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <textarea name="detalles_producto" id="detalles_producto" rows="8" cols="80" class="form-control" data-validation="required">
+                        <textarea name="detalles_producto" id="detalles_producto" rows="15" cols="80" class="form-control" data-validation="required">
                           @if(old('detalles_producto') != "")
                               {{old('detalles_producto')}}
-                          @endif
-                        </textarea>
+                          @endif</textarea>
                         <small class="help-block form-text">Detalles</small>
                     </div>
                 </div>
@@ -139,11 +138,26 @@ Crear Producto - SENA
 
 @section('jsfoot')
     <script src="js/select2.js"></script>
+        
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script>
 
         $(document).ready(function() {
+          $('#btnNuevoProducto').addClass('active');
            $("#id_area").select2();
            $("#unidad_medida").select2();
+          //*************TINYMCE*********
+            tinymce.init({
+            selector: '#detalles_producto',
+            theme:'silver',
+            language: 'es',
+            plugins: "lists",
+            menubar: false,
+            toolbar:[ 'newdocument | bold | numlist | bullist | paste |italic | underline | alignleft | alignjustify | aligncenter alignright undo redo subscript superscript ',
+        'code' 
+            ],
+            });
+          //*****************************
            $("#botonBuscar").click(function(){
              $("#buscarC").modal({backdrop: true});
            });
@@ -198,6 +212,8 @@ Crear Producto - SENA
         lang: 'es'
     });
   </script>
+
+
 
 
 

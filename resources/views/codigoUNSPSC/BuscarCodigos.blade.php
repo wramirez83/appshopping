@@ -81,3 +81,13 @@ Buscar Codigo UNSPSC
 </div>
 @endif
 @endsection
+@section('jsfoot')
+<script>
+    $('#btnBuscarCodigoUNSPSC').addClass('active');
+    $('#btnGestionApp').addClass('active');
+
+    $.validate({
+        lang: 'es'
+    });
+</script>
+@endsection

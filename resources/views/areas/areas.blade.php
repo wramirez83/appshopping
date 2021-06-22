@@ -92,12 +92,12 @@ Sectores Económicos
                 </td>
                 <td>
                     {{ $llaveRegistros->estado }}
-                </td>
-               
+                </td> 
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $areas->links() }}
 </div>
 
 

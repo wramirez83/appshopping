@@ -16,9 +16,10 @@ class solicitudNoAprobada extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    protected $_motivo;
+    public function __construct($motivo)
     {
-        //
+        $this->_motivo = $motivo;
     }
 
     /**
@@ -28,6 +29,7 @@ class solicitudNoAprobada extends Mailable
      */
     public function build()
     {
-        return $this->view('correo.solicitudNoAprobada');
+        $motivo = $this->_motivo;
+        return $this->view('correo.solicitudNoAprobada', compact('motivo'));
     }
 }

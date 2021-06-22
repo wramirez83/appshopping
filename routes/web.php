@@ -58,7 +58,9 @@ Route::middleware(['auth', 'rolAdmonMiddleware'])->group(function(){
   Route::get('/crearUsuario', 'admon\usuarioControlador@crearUsuario')->name('crearUsuario');
   Route::post('/guardarUsuario', 'admon\usuarioControlador@guardarUsuario')->name('guardarUsuario');
   Route::get('/modificarUsuario', 'admon\usuarioControlador@modificarUsuario')->name('modificarUsuario');
+  Route::post('/actualizarUsuario', 'admon\usuarioControlador@actualizarUsuario')->name('actualizarUsuario');
   Route::post('/buscarUsuario', 'admon\usuarioControlador@buscarUsuario')->name('buscarUsuario');
+  Route::post('/actualizandoUsuario', 'admon\usuarioControlador@actualizando')->name('actualizandoUsuario');
   Route::get('/areas', 'admon\areasControlador@index')->name('areas');
   Route::post('/guardarArea', 'admon\areasControlador@guardarArea')->name('guardarArea');
   Route::post('/desargarReporteAprobado', 'admon\reportes@reporteAprobados')->name('desargarReporteAprobado');//Reporte
@@ -86,6 +88,7 @@ Route::middleware(['auth', 'rolGestorAreaMiddleware'])->group(function(){
   Route::get('/crearProducto', 'admon\productoControlador@index')->name('crearProducto');
   Route::post('/guardarProducto', 'admon\productoControlador@guardarProducto')->name('guardarProducto');
   Route::get('/modificarProducto/{id?}', 'admon\productoControlador@modificar')->name('modificarProducto');
+  Route::post('/actualizandoProducto', 'admon\productoControlador@actualizando')->name('actualizandoProducto');
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS COMO GESTORES DE AREA  *******
 
@@ -105,7 +108,7 @@ Route::middleware(['auth', 'rolInstructorMiddleware'])->group(function(){
 Route::middleware(['auth', 'rolCoordinadorMiddleware'])->group(function(){
   Route::get('/aprobarSolicitud/', 'admon\solicitudControlador@aprobarSolicitud')->name('aprobarSolicitud');
   Route::get('/solicitarAprobarSolicitud/{id?}', 'admon\solicitudControlador@solicitarAprobarSolicitud')->name('solicitarAprobarSolicitud');
-  Route::get('/solicitarNoAprobarSolicitud/{id?}', 'admon\solicitudControlador@solicitarNoAprobarSolicitud')->name('solicitarNoAprobarSolicitud');
+  Route::get('/solicitarNoAprobarSolicitud/{id?}/{motivo?}', 'admon\solicitudControlador@solicitarNoAprobarSolicitud')->name('solicitarNoAprobarSolicitud');
   Route::get('/HistorialSolicitud/', 'admon\solicitudControlador@HistorialSolicitud')->name('HistorialSolicitud');
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS *******
@@ -119,7 +122,33 @@ Route::middleware(['auth', 'rolAlmancenMiddleware'])->group(function(){
 });
 //*** FIN RUTAS DE USUARIOS AUTENTICADOS *******
 
+Route::get('/limpiarConfiguracion/{clave}', function($clave){
+
+  if($clave == 'wramirez')
+  {
+    Artisan::call('config:clear');
+    return 'Limpieza de Cache';
+  }
+  else
+  {
+    return 'No se realizo la acción';
+  }
+  
+});
 Route::get('/limpiarCache', function(){
-  Artisan::call('config:clear');
+  Artisan::call('cache:clear');
   return 'Limpieza de Cache';
+});
+Route::get('/seed/{clave}', function($clave){
+
+  if($clave == 'wramirez')
+  {
+    Artisan::call('db:seed');
+    return 'Seed Ejecutadp';
+  }
+  else
+  {
+    return 'No se realizo la acción';
+  }
+  
 });

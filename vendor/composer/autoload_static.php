@@ -61,6 +61,7 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        'a806c12c6e24e7e4e900847766218dba' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -80,6 +81,10 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'V' => 
         array (
             'Vsmoraes\\Pdf\\' => 13,
+        ),
+        'U' => 
+        array (
+            'UxWeb\\SweetAlert\\' => 17,
         ),
         'T' => 
         array (
@@ -206,6 +211,10 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'Vsmoraes\\Pdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/vsmoraes/laravel-pdf/src',
+        ),
+        'UxWeb\\SweetAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -450,6 +459,13 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
                 0 => __DIR__ . '/..' . '/erusev/parsedown',
             ),
         ),
+        'N' => 
+        array (
+            'NumerosEnLetras' => 
+            array (
+                0 => __DIR__ . '/..' . '/villca/numeros-en-letras/src',
+            ),
+        ),
         'M' => 
         array (
             'Mockery' => 
@@ -480,6 +496,8 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\pedidoArea' => __DIR__ . '/../..' . '/app/Exports/pedidoArea.php',
+        'App\\Exports\\solicitudesAprobadas' => __DIR__ . '/../..' . '/app/Exports/solicitudesAprobadas.php',
         'App\\Exports\\solicitudesExport' => __DIR__ . '/../..' . '/app/Exports/solicitudesExport.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -487,6 +505,7 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\admon\\almacenControlador' => __DIR__ . '/../..' . '/app/Http/Controllers/admon/almacenControlador.php',
         'App\\Http\\Controllers\\admon\\areasControlador' => __DIR__ . '/../..' . '/app/Http/Controllers/admon/areasControlador.php',
         'App\\Http\\Controllers\\admon\\codigoUNSPSControlador' => __DIR__ . '/../..' . '/app/Http/Controllers/admon/codigoUNSPSControlador.php',
         'App\\Http\\Controllers\\admon\\dashboardControlador' => __DIR__ . '/../..' . '/app/Http/Controllers/admon/dashboardControlador.php',
@@ -508,9 +527,16 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\rolAdmonMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/rolAdmonMiddleware.php',
+        'App\\Http\\Middleware\\rolAlmancenMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/rolAlmancenMiddleware.php',
         'App\\Http\\Middleware\\rolCoordinadorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/rolCoordinadorMiddleware.php',
         'App\\Http\\Middleware\\rolGestorAreaMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/rolGestorAreaMiddleware.php',
         'App\\Http\\Middleware\\rolInstructorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/rolInstructorMiddleware.php',
+        'App\\Mail\\codigoUsuario' => __DIR__ . '/../..' . '/app/Mail/codigoUsuario.php',
+        'App\\Mail\\solicitudAprobada' => __DIR__ . '/../..' . '/app/Mail/solicitudAprobada.php',
+        'App\\Mail\\solicitudGuardada' => __DIR__ . '/../..' . '/app/Mail/solicitudGuardada.php',
+        'App\\Mail\\solicitudNoAprobada' => __DIR__ . '/../..' . '/app/Mail/solicitudNoAprobada.php',
+        'App\\Mail\\solicitudesAprobadas' => __DIR__ . '/../..' . '/app/Mail/solicitudesAprobadas.php',
+        'App\\Mail\\usuarioCreado' => __DIR__ . '/../..' . '/app/Mail/usuarioCreado.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -520,17 +546,27 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'App\\areas' => __DIR__ . '/../..' . '/app/areas.php',
         'App\\areas_formacion' => __DIR__ . '/../..' . '/app/areas_formacion.php',
         'App\\codigoUNSPSC' => __DIR__ . '/../..' . '/app/codigoUNSPSC.php',
+        'App\\consolidadoSolicitudesModelo' => __DIR__ . '/../..' . '/app/consolidadoSolicitudesModelo.php',
+        'App\\elementos_entradas_almacen' => __DIR__ . '/../..' . '/app/elementos_entradas_almacen.php',
+        'App\\elementos_salida_almacen' => __DIR__ . '/../..' . '/app/elementos_salida_almacen.php',
+        'App\\entradas_almacen' => __DIR__ . '/../..' . '/app/entradas_almacen.php',
         'App\\ficha' => __DIR__ . '/../..' . '/app/ficha.php',
         'App\\producto' => __DIR__ . '/../..' . '/app/producto.php',
         'App\\productos_solicitudes' => __DIR__ . '/../..' . '/app/productos_solicitudes.php',
         'App\\programas' => __DIR__ . '/../..' . '/app/programas.php',
         'App\\proyecto' => __DIR__ . '/../..' . '/app/proyecto.php',
         'App\\roles' => __DIR__ . '/../..' . '/app/roles.php',
+        'App\\salidas_almacen' => __DIR__ . '/../..' . '/app/salidas_almacen.php',
         'App\\solicitud' => __DIR__ . '/../..' . '/app/solicitud.php',
         'App\\solicitudesAprobadas' => __DIR__ . '/../..' . '/app/solicitudesAprobadas.php',
         'App\\tipos_documentos' => __DIR__ . '/../..' . '/app/tipos_documentos.php',
+        'App\\unidades_medida' => __DIR__ . '/../..' . '/app/unidades_medida.php',
         'App\\usuario_areas' => __DIR__ . '/../..' . '/app/usuario_areas.php',
         'App\\usuarios_roles' => __DIR__ . '/../..' . '/app/usuarios_roles.php',
+        'App\\vistaExistenciaModelo' => __DIR__ . '/../..' . '/app/vistaExistenciaModelo.php',
+        'App\\vistaFichasModelo' => __DIR__ . '/../..' . '/app/vistaFichasModelo.php',
+        'App\\vistaProductosModelo' => __DIR__ . '/../..' . '/app/vistaProductosModelo.php',
+        'App\\vistaUsuarioRoles' => __DIR__ . '/../..' . '/app/vistaUsuarioRoles.php',
         'Barryvdh\\DomPDF\\Facade' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade.php',
         'Barryvdh\\DomPDF\\PDF' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/PDF.php',
         'Barryvdh\\DomPDF\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/ServiceProvider.php',
@@ -2827,6 +2863,7 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'NumerosEnLetras' => __DIR__ . '/..' . '/villca/numeros-en-letras/src/NumerosEnLetras.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/CollisionServiceProvider.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\Inspector' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/Inspector.php',
@@ -4749,6 +4786,12 @@ class ComposerStaticInitf6e181c7e68400eb00fa701bbc8afea0
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'UsuariosTablaSeeder' => __DIR__ . '/../..' . '/database/seeds/UsuariosTablaSeeder.php',
+        'UxWeb\\SweetAlert\\ConvertMessagesIntoSweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/ConvertMessagesIntoSweetAlert.php',
+        'UxWeb\\SweetAlert\\LaravelSessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/LaravelSessionStore.php',
+        'UxWeb\\SweetAlert\\SessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SessionStore.php',
+        'UxWeb\\SweetAlert\\SweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlert.php',
+        'UxWeb\\SweetAlert\\SweetAlertNotifier' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertNotifier.php',
+        'UxWeb\\SweetAlert\\SweetAlertServiceProvider' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertServiceProvider.php',
         'Vsmoraes\\Pdf\\Dompdf' => __DIR__ . '/..' . '/vsmoraes/laravel-pdf/src/Dompdf.php',
         'Vsmoraes\\Pdf\\Pdf' => __DIR__ . '/..' . '/vsmoraes/laravel-pdf/src/Pdf.php',
         'Vsmoraes\\Pdf\\PdfFacade' => __DIR__ . '/..' . '/vsmoraes/laravel-pdf/src/PdfFacade.php',

@@ -32,7 +32,7 @@ Crear Solicitud - SENA
             <select name="id_ficha" id="id_ficha" class="form-control" required>
               <option value="">Seleccionar</option>
               @foreach($ficha as $llaveFicha)
-              <option value="{{ $llaveFicha->id_ficha}}">{{ $llaveFicha->ficha}}</option>
+              <option value="{{ $llaveFicha->id_ficha}}">{{ $llaveFicha->ficha}} - {{ $llaveFicha->nombre_programa }}</option>
               @endforeach
             </select>
           </div>

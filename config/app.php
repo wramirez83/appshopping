@@ -146,6 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         
 
         /*
@@ -218,6 +219,7 @@ return [
         'PDF' => 'Vsmoraes\Pdf\PdfFacade',
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF2' => Barryvdh\DomPDF\Facade::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 

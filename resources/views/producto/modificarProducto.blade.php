@@ -21,13 +21,14 @@ Modificar Producto - SENA
       @endif
       @if(session('status'))
         <div class="alert alert-success">
-          <strong>Producto Creado</strong>
+          <strong>Ficha Técnica Actualizada</strong>
         </div>
       @endif
-        <form action="{{ Route('guardarProducto') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <form action="{{ Route('actualizandoProducto') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
         <div class="card-header">
             <strong>Datos Básicos.</strong>
         </div>
+
         <div class="card-body card-block">
               {{ CSRF_FIELD() }}
                 <div class="row form-group">
@@ -35,19 +36,20 @@ Modificar Producto - SENA
                         <label for="text-input" class=" form-control-label">Nombre Completo</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" name="nombre" class="form-control" required value="{{old('nombre')}}" data-validation="required">
-                        <small class="form-text text-muted">Nombre Completo de Producto</small>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required value="{{ $_producto->nombre }}" data-validation="required">
+                        <small class="form-text text-muted">
+                          Nombre Completo de Producto
+                        </small>
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="email-input" class=" form-control-label">Detalles de Producto</label>
                     </div>
                     <div class="col-12 col-md-9">
                         <textarea name="detalles_producto" id="detalles_producto" rows="8" cols="80" class="form-control" data-validation="required">
-                          @if(old('detalles_producto') != "")
-                              {{old('detalles_producto')}}
-                          @endif
+                         {{$_producto->detalles_producto}}
                         </textarea>
                         <small class="help-block form-text">Detalles</small>
                     </div>
@@ -57,7 +59,7 @@ Modificar Producto - SENA
                         <label for="email-input" class=" form-control-label">Precio Unitario</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="precio_unitario" name="precio_unitario" class="form-control" required value="{{old('precio_unitario')}}" data-validation="required number">
+                        <input type="text" id="precio_unitario" name="precio_unitario" class="form-control" required value="{{ $_producto->precio_unitario }}" data-validation="required number">
                         <small class="help-block form-text">Precio</small>
                     </div>
                 </div>
@@ -97,10 +99,10 @@ Modificar Producto - SENA
                         <label for="" class=" form-control-label">Código UNSPCS</label>
                     </div>
                     <div class="col-12 col-md-3">
-                        <input type="text"  name="codigos_unspcs_id_codigo_unspcs" id="codigos_unspcs_id_codigo_unspcs" class="form-control" readonly value="{{old('codigos_unspcs_id_codigo_unspcs')}}" required>
+                        <input type="text"  name="codigos_unspcs_id_codigo_unspcs" id="codigos_unspcs_id_codigo_unspcs" class="form-control" readonly value="{{ $_producto->codigoUnspcs }}" required>
                     </div>
                     <div class="col-12 col-md-4">
-                        <input type="text"  name="nombre_c" id="nombre_c" class="form-control" readonly value="{{old('nombre_c')}}" required>
+                        <input type="text"  name="nombre_c" id="nombre_c" class="form-control" readonly value="{{ $_producto->descripcionUnspcs }}" required>
                     </div>
                     <div class="col-12 col-md-2">
                       <button class="item" data-toggle="tooltip" data-placement="top" title="Buscar Código" type="button" id="botonBuscar">
@@ -116,15 +118,22 @@ Modificar Producto - SENA
                     <input type="file" id="foto" name="foto" class="form-control-file">
                   </div>
                 </div>
+                <div>
+                @if($_producto->foto != "")
+                <img src="data:image/jpeg;base64,{{ $_producto->foto}}">
 
+                @endif
+                @if($_producto->foto == "")
+                SIN FOTO
+                @endif
+                </div>
+                <input type="hidden" name="id_codigo_producto" value="{{ $_producto->id_codigo_producto}}">
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-dot-circle-o"></i> Guardar
+                <i class="fa fa-dot-circle-o"></i> Actualizar
             </button>
-            <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-ban"></i> Reset
-            </button>
+            
 
         </div>
     </div>
@@ -139,13 +148,33 @@ Modificar Producto - SENA
 
 @section('jsfoot')
     <script src="js/select2.js"></script>
+     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script>
 
         $(document).ready(function() {
+
+           //*************TINYMCE*********
+            tinymce.init({
+            selector: '#detalles_producto',
+            mode: 'textareas',
+            theme:'silver',
+            browser_spellcheck: true,
+            language: 'es',
+            plugins: "lists",
+            menubar: false,
+            toolbar:[ 'newdocument | bold | numlist | bullist | paste |italic | underline | alignleft | alignjustify | aligncenter alignright undo redo subscript superscript ',
+        'code' 
+            ],
+            });
+            $('#unidad_medida option[value="{{ $_producto->unidad_medida }}"]').attr("selected", true );
+            $('#id_area option[value="{{ $_producto->id_area }}"]').attr("selected", true );
+
+          //**********TINYMCE******
+         // $("#detalles_producto").html()
            $("#id_area").select2();
            $("#unidad_medida").select2();
            $("#botonBuscar").click(function(){
-             $("#buscarC").modal({backdrop: true});
+          $("#buscarC").modal({backdrop: true});
            });
            @if(session('datos'))
 
@@ -197,6 +226,10 @@ Modificar Producto - SENA
     $.validate({
         lang: 'es'
     });
+
+    
+            
+          //*****************************
   </script>
 
 

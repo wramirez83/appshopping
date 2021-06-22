@@ -47,6 +47,6 @@ class proyectoControlador extends Controller
       $_programas = $_programa->all();
 
       $_proyecto = new proyecto();
-      return view('proyecto.listarProyecto', ['programas' => $_programas, 'proyectos' => $_proyecto->all()]);
+      return view('proyecto.listarProyecto', ['programas' => $_programas, 'proyectos' => $_proyecto->paginate()]);
     }
 }

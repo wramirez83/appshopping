@@ -73,7 +73,6 @@ Buscar Codigo UNSPSC
                     {{ $llaveDatos->id_codigo_unspcs }}
                 </td>
                 <td class="desc">{{ $llaveDatos->descripcion }}</td>
-
             </tr>
             @endforeach
         </tbody>

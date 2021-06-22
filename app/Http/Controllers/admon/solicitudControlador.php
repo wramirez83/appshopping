@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ficha;
+use App\vistaFichasModelo;
 use App\areas;
 use App\solicitud;
 use App\productos_solicitudes;
@@ -18,12 +19,14 @@ use App\Mail\solicitudNoAprobada;
 use App\Mail\solicitudAprobada;
 use Mail;
 use App\vistaUsuarioRoles;
+use App\vistaExistenciaModelo;
+use App\historialEstadosModelo;
 
 class solicitudControlador extends Controller
 {
     public function index()
     {
-      $_ficha = new ficha();
+      $_ficha = new vistaFichasModelo();
       $_area = new areas();
       
       $area_formacion = DB::select('SELECT * FROM usuario_areas, areas_formacion WHERE usuario_areas.id_usuario = ' . Auth::user()->id_usuario . ' AND areas_formacion.id_area = usuario_areas.id_area');
@@ -73,7 +76,13 @@ class solicitudControlador extends Controller
 
       $idUsuario = Auth::user()->id_usuario;
       $d = DB::select('SELECT solicitudes.id_solicitud, estados.nombre_estado, estados.id_estado, fichas.ficha, fichas.id_ficha, fichas.id_proyecto_formativo, solicitudes.fecha FROM solicitudes, estados, fichas WHERE solicitudes.id_usuario = ' . $idUsuario . ' AND estados.id_estado = solicitudes.id_estado AND fichas.id_ficha = solicitudes.id_ficha');
-      return view('solicitud.listarSolicitud', ['solicitudes' => $d]);
+      $_obs = [];
+      foreach (array_column($d, 'id_solicitud') as $key => $value) {
+        $_temp = historialEstadosModelo::where('idSolicitud', $value)->orderBy('idHistorialEstados', 'DESC')->pluck('observacion');
+        $_obs[$value] = $_temp->toJson();
+      }
+      
+      return view('solicitud.listarSolicitud', ['solicitudes' => $d, '_obs' => $_obs]);
     }
     public function listaSolicitud(Request $resquest)
     {
@@ -87,14 +96,34 @@ class solicitudControlador extends Controller
       {
         //$_productos->where('solicitudes_id_solicitud', $resquest->id_solicitud)->get(), 'area' => $_area->all()
         $_productosSolicitud = DB::select('SELECT productos_solicitudes.*, productos.nombre FROM productos_solicitudes, productos WHERE productos_solicitudes.solicitudes_id_solicitud = ' . $resquest->id_solicitud . ' AND productos.id_codigo_producto = productos_solicitudes.productos_id_codigo_producto');
+
         return view('solicitud.listaSolicitud', ['solicitud' => $_verifica,
         'productos' => $_productosSolicitud, 'area' => $_area->all()]);
       }
       else {
+
         $_productosSolicitud = DB::select('SELECT productos_solicitudes.*, productos.nombre FROM productos_solicitudes, productos WHERE productos_solicitudes.solicitudes_id_solicitud = ' . $resquest->id_solicitud . ' AND productos.id_codigo_producto = productos_solicitudes.productos_id_codigo_producto');
         $_verifica = $_solicitud->where('id_solicitud', $resquest->id_solicitud)->first();
-        return view('solicitud.verSolicitud', ['solicitud' => $_verifica,
+        $_rol = vistaUsuarioRoles::where('id_rol', '=', 3)->where('id_usuario', "=", Auth::user()->id_usuario)->first();
+        if(isset($_rol->correo))
+        {
+          $item = [];
+          $_existencia = [];
+          foreach ($_productosSolicitud as $key) {
+            $item['id_codigo_producto'] = $key->productos_id_codigo_producto;
+            $_existencia [] =  vistaExistenciaModelo::where($item)->first();
+          }
+          
+          //dd($_existencia);
+           return view('solicitud.verSolicitudAlmacen', ['solicitud' => $_verifica,
+        'productos' =>$_productosSolicitud, 'area' => $_area->all(), '_existencia' => $_existencia]);
+        }
+        else
+        {
+           return view('solicitud.verSolicitud', ['solicitud' => $_verifica,
         'productos' =>$_productosSolicitud, 'area' => $_area->all()]);
+        }
+       
       }
     }
     public function actualizarSolicitud(Request $resquest)
@@ -155,15 +184,25 @@ class solicitudControlador extends Controller
      
       $idUsuario = Auth::user()->id_usuario;
       $d = DB::select('SELECT solicitudes.id_solicitud, estados.nombre_estado, estados.id_estado, fichas.ficha, fichas.id_ficha, fichas.id_proyecto_formativo, solicitudes.fecha FROM solicitudes, estados, fichas WHERE (' . $this->cadenaRoles() . ') AND estados.id_estado = solicitudes.id_estado AND fichas.id_ficha = solicitudes.id_ficha');
-      
-      return view('solicitud.listarSolicitud', ['solicitudes' => $d]);
+      $_obs = [];
+      foreach (array_column($d, 'id_solicitud') as $key => $value) {
+        $_temp = historialEstadosModelo::where('idSolicitud', $value)->orderBy('idHistorialEstados', 'DESC')->pluck('observacion');
+        $_obs[$value] = $_temp->toJson();
+      }
+      return view('solicitud.listarSolicitud', ['solicitudes' => $d, '_obs' => $_obs]);
     }
     public function HistorialSolicitud()
     {
      
       $idUsuario = Auth::user()->id_usuario;
       $d = DB::select('SELECT solicitudes.id_solicitud, estados.nombre_estado, estados.id_estado, fichas.ficha, fichas.id_ficha, fichas.id_proyecto_formativo,solicitudes.fecha FROM solicitudes, estados, fichas WHERE estados.id_estado = solicitudes.id_estado AND fichas.id_ficha = solicitudes.id_ficha');
-      return view('solicitud.listarSolicitud', ['solicitudes' => $d, 'historial' => 'Si']);
+      $_obs = [];
+      foreach (array_column($d, 'id_solicitud') as $key => $value) {
+        $_temp = historialEstadosModelo::where('idSolicitud', $value)->orderBy('idHistorialEstados', 'DESC')->pluck('observacion');
+        $_obs[$value] = $_temp->toJson();
+      }
+      
+      return view('solicitud.listarSolicitud', ['solicitudes' => $d, 'historial' => 'Si', '_obs' => $_obs]);
     }
     public function solicitarAprobarSolicitud($id)
     {
@@ -211,10 +250,14 @@ class solicitudControlador extends Controller
         return back();
       }
     }
-    public function solicitarNoAprobarSolicitud($id)
+    public function solicitarNoAprobarSolicitud($id, $motivo = "")
     {
       if($id >0)
       {
+        $_historial = new historialEstadosModelo();
+        //estado Actual
+        $_estadoActual = solicitud::find($id);
+        //dd($_estadoActual->id_estado);
         //id de la solicitud
         $_solicitud = new solicitud();
         $_rol_mayor = $this->rolMayor();
@@ -222,26 +265,33 @@ class solicitudControlador extends Controller
         switch ($_rol_mayor) {
           case '3':
             //Aprueba Almacen
-            $_solicitud->where('id_solicitud', $id)->update(['id_estado' => 1]);
+            $_nuevoEstado = 1;
           break;
           case '4':
             //Aprueba Coordinador Academico
-            $_solicitud->where('id_solicitud', $id)->update(['id_estado' => 2]);
+             $_nuevoEstado = 2;
           break;
           case '5':
             //Aprueba Coordinador Misional
-            $_solicitud->where('id_solicitud', $id)->update(['id_estado' => 3]);
+            $_nuevoEstado = 3;
           break;
           case '6':
             //Aprueba Coordinador Subdirector
-            $_solicitud->where('id_solicitud', $id)->update(['id_estado' => 4]);
+             $_nuevoEstado = 4;
           break;
         }
+        $_solicitud->where('id_solicitud', $id)->update(['id_estado' => $_nuevoEstado]);
+        $_historial->idEstadoAnterior = $_estadoActual->id_estado;
+        $_historial->idEstadoNuevo = $_nuevoEstado;
+        $_historial->idUsuario = Auth::user()->id_usuario;
+        $_historial->idSolicitud = $id;
+        $_historial->observacion = $motivo;
+        $_historial->save();
         //Enviar Correo a Rol Menor para informar
         $_cc = vistaUsuarioRoles::where('id_rol', '=' ,$_rol_mayor-1)->pluck('correo');
         $_copia;
         foreach ($_cc as $key => $value) {
-          Mail::to($value)->send(new solicitudNoAprobada());
+          Mail::to($value)->send(new solicitudNoAprobada($motivo));
         }
         
         
